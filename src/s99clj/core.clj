@@ -28,3 +28,25 @@
     (first xs)
     (recur (dec n) (rest xs))))
 
+;P04
+; recursive way
+(defn len [xs]
+  (loop [count 0
+         xs xs]
+    (if (= '() xs)
+      count
+      (recur (inc count) (rest xs)))))
+; map and reduce way
+(defn len2 [xs]
+  (->> xs
+       (map (fn [_] 1))
+       (reduce +)))
+
+;P05
+(defn my-reverse [xs]
+      (reduce conj () xs))
+
+;P06
+(defn palindrome? [xs]
+  (= (my-reverse xs) xs))
+

@@ -21,3 +21,22 @@
   (testing "P03"
     (is (= 3 (my-nth 2 '(1 2 3))))
     (is (= nil (my-nth 3 '(1 2 3))))))
+
+(deftest p04
+  (testing "P04 recursive way"
+    (is (= 3 (len '(1 2 3))))
+    (is (= 0 (len ()))))
+  (testing "P04 map and reduce way"
+    (is (= 3 (len2 '(1 2 3))))
+    (is (= 0 (len2 ())))))
+
+(deftest p05
+  (testing "P05"
+    (is (= '(3 2 1) (my-reverse '(1 2 3))))
+    (is (= '() (my-reverse ())))))
+
+(deftest p06
+  (testing "P06"
+    (is (palindrome? '(1 2 3 2 1)))
+    (is (not (palindrome? '(1 2 3))))))
+
