@@ -40,3 +40,7 @@
     (is (palindrome? '(1 2 3 2 1)))
     (is (not (palindrome? '(1 2 3))))))
 
+(deftest p07
+  (testing "P07"
+    (is (= '(1 2 3 4 5 6) (my-flatten [1 [2 3 [4 [5] 6]]])))))
+

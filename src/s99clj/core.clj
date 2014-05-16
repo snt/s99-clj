@@ -50,3 +50,13 @@
 (defn palindrome? [xs]
   (= (my-reverse xs) xs))
 
+;P07
+(defn my-flatten [xs]
+  (reduce
+   #(concat
+     %1
+     (if (coll? %2)
+       (my-flatten %2)
+       [%2]))
+   []
+   xs))
