@@ -40,3 +40,11 @@
     (is (palindrome? '(1 2 3 2 1)))
     (is (not (palindrome? '(1 2 3))))))
 
+(deftest p07
+  (testing "P07"
+    ))
+
+(deftest p08
+  (testing "P08"
+    (is (my-compress [1 1 2 3 3 3 4 3 4 5 5 5 5 5]) [1 2 3 4 3 4 5])
+    (is (my-compress '(2 2 1 1 3 1 3 1)) '(2 1 3 1 3 1))))

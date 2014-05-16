@@ -50,3 +50,16 @@
 (defn palindrome? [xs]
   (= (my-reverse xs) xs))
 
+;P07
+
+
+;P08
+(defn my-compress [[x & xs]]
+  (loop [prev x
+         [y & ys] xs
+         outs [x]]
+    (if (= y nil)
+      outs
+      (recur y ys (if (= prev y) outs (concat outs [y]))))))
+
+
