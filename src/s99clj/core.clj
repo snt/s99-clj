@@ -73,3 +73,19 @@
              (if (= prev y)
                outs
                (concat outs [y]))))))
+
+;P09
+(defn pack [[x & xs]]
+  (if (= nil x) []
+    (loop [packed   []
+           packing  [x]
+           [x & xs] xs]
+      (if (= nil x)
+        (concat packed [packing])
+        (if (= (first packing) x)
+          (recur packed
+                 (conj packing x)
+                 xs)
+          (recur (concat packed [packing])
+                 [x]
+                 xs))))))

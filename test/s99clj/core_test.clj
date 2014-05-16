@@ -49,3 +49,7 @@
     (is (my-compress [1 1 2 3 3 3 4 3 4 5 5 5 5 5]) [1 2 3 4 3 4 5])
     (is (my-compress '(2 2 1 1 3 1 3 1)) '(2 1 3 1 3 1))))
 
+(deftest p09
+  (testing "P09"
+    (is (pack '(a a a a b c c a a d e e e e))
+        '('(a a a a) '(b) '(c c) '(a a) '(d) '(e e e e)))))
