@@ -81,5 +81,9 @@
     (is (duplicate 3 [1 2 3])
         [1 1 1 2 2 2 3 3 3])))
 
+(deftest p16
+  (testing"P16"
+   (is (my-drop 3 [:a :b :c :d :e :f :g])
+       [:a :b :d :e :g])))
 
 

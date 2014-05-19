@@ -154,3 +154,13 @@
                  (recur (dec count) (conj left right) right ))))
            []
            xs)))
+
+;P16
+(defn my-drop [n xs]
+  (loop [dropped []
+         index 1
+         [x & xs] xs]
+    (cond (nil? x)      dropped
+          (= 0 (mod index n)) (recur dropped (inc index) xs)
+          :else         (recur (conj dropped x) (inc index) xs))))
+
