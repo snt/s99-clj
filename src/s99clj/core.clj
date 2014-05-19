@@ -134,3 +134,23 @@
                                      run)
                                [1 x]
                                xs))))
+
+;P14 & P15
+(defn duplicate
+  ([xs]
+   (reduce (fn [left right]
+             (conj left
+                   right
+                   right))
+           []
+           xs))
+  ([n xs]
+   (reduce (fn [left right]
+             (loop [count n
+                    left left
+                    right right]
+               (if (<= count 0)
+                 left
+                 (recur (dec count) (conj left right) right ))))
+           []
+           xs)))

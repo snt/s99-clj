@@ -74,4 +74,12 @@
     (is (rle-encode-direct '(a a a a b c c a a d e e e e))
         '((4,a), (1,b), (2,c), (2,a), (1,d), (4,e)))))
 
+(deftest p14-p15
+  (testing "P14-P15"
+    (is (duplicate [1 2 3])
+        [1 1 2 2 3 3])
+    (is (duplicate 3 [1 2 3])
+        [1 1 1 2 2 2 3 3 3])))
+
+
 
