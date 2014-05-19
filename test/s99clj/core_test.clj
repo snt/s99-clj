@@ -53,3 +53,18 @@
   (testing "P09"
     (is (pack '(a a a a b c c a a d e e e e))
         '('(a a a a) '(b) '(c c) '(a a) '(d) '(e e e e)))))
+
+(deftest p10
+  (testing "P10"
+    (is (rle-encode '(a a a a b c c a a d e e e e))
+        '((4,a), (1,b), (2,c), (2,a), (1,d), (4,e)))))
+
+(deftest p11
+  (testing "P11"
+    (is (rle-encode-modified '(a a a a b c c a a d e e e e))
+        '((4,a), (1,b), (2,c), (2,a), d, (4,e)))))
+
+
+
+
+

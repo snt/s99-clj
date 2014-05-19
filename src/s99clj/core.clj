@@ -89,3 +89,18 @@
           (recur (concat packed [packing])
                  [x]
                  xs))))))
+
+;P10
+(defn rle-encode [xs]
+  (->> xs
+       pack
+       (map (fn [xs] [(len xs) (first xs)] ))))
+
+;P11
+(defn rle-encode-modified [xs]
+  (->> xs
+       pack
+       (map (fn [ys]
+              (case (len ys)
+                1 (first ys)
+                [(len ys) (first ys)])))))
