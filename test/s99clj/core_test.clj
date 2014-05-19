@@ -82,8 +82,13 @@
         [1 1 1 2 2 2 3 3 3])))
 
 (deftest p16
-  (testing"P16"
+  (testing "P16"
    (is (my-drop 3 [:a :b :c :d :e :f :g])
        [:a :b :d :e :g])))
+
+(deftest p17
+  (testing "P17"
+          (is (my-split 3 [1 2 3 4 5 6 7])
+              [[1 2 3][4 5 6 7]])))
 
 

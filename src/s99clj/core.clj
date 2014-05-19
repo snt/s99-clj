@@ -164,3 +164,14 @@
           (= 0 (mod index n)) (recur dropped (inc index) xs)
           :else         (recur (conj dropped x) (inc index) xs))))
 
+
+;P17
+(defn my-split [n xs]
+  (loop [heads []
+         i n
+         [x & xs] xs]
+    (cond (or (nil? x)
+              (<= i 0)) [heads (concat [x] xs)]
+          :else         (recur (conj heads x)
+                               (dec i)
+                               xs))))
