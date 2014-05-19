@@ -104,3 +104,18 @@
               (case (len ys)
                 1 (first ys)
                 [(len ys) (first ys)])))))
+
+;P12
+(defn rle-decode [xs]
+  (reduce concat
+          (map (fn [[count item]]
+                 (loop [expanded []
+                        count count
+                        item item]
+                   (if (<= count 0)
+                     expanded
+                     (recur (concat expanded [item])
+                            (dec count)
+                            item))))
+               xs)))
+
