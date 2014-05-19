@@ -119,3 +119,18 @@
                             item))))
                xs)))
 
+;P13
+(defn rle-encode-direct [[x & xs]]
+  (loop [encoded  []
+         run      [1 x]
+         [x & xs] xs]
+    (cond (nil? x)      (conj encoded
+                              run)
+          (= (run 1) x) (recur encoded
+                               [(inc (run 0))
+                                (run 1)]
+                               xs)
+          :else         (recur (conj encoded
+                                     run)
+                               [1 x]
+                               xs))))
