@@ -175,3 +175,21 @@
           :else         (recur (conj heads x)
                                (dec i)
                                xs))))
+
+;P18
+(defn my-slice [i k xs]
+  (let [drop-first (fn [n [x & xs]]
+                     (cond (<= n 1) xs
+                           (nil? x) xs
+                           :else    (recur (dec n)
+                                           xs)))
+        take-first (fn [n xs]
+                     (loop [including []
+                            n         n
+                            [x & xs]  xs]
+                       (cond (<= n 0) including
+                             (nil? x) including
+                             :else    (recur (conj including x)
+                                             (dec n)
+                                             xs))))]
+    (->> xs (drop-first i) (take-first (- k i)))))
