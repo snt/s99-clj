@@ -83,12 +83,27 @@
 
 (deftest p16
   (testing "P16"
-   (is (my-drop 3 [:a :b :c :d :e :f :g])
-       [:a :b :d :e :g])))
+    (is (my-drop 3 [:a :b :c :d :e :f :g])
+        [:a :b :d :e :g])))
 
 (deftest p17
   (testing "P17"
-          (is (my-split 3 [1 2 3 4 5 6 7])
-              [[1 2 3][4 5 6 7]])))
+    (is (my-split 3 [1 2 3 4 5 6 7])
+        [[1 2 3][4 5 6 7]])))
 
+(deftest p18
+  (testing "P18"
+    (is (my-slice 3 7 ['a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k])
+        ['d 'e 'f 'g])))
 
+(deftest p19
+  (testing "P19"
+    (is (rotate 3 '[a b c d e f g h i j k])
+        '[d e f g h i j k a b c])
+    (is (rotate -2 '[a b c d e f g h i j k])
+        '[j k a b c d e f g h i])))
+
+(deftest p20
+  (testing "P20"
+    (is (remove-at 1 '[a b c d])
+        '[[a c d] b])))

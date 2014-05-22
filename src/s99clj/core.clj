@@ -78,7 +78,8 @@
              ys
              (if (= prev y)
                outs
-               (concat outs [y]))))))
+               (concat outs
+                       [y]))))))
 
 ;P09
 (defn pack [[x & xs]]
@@ -87,12 +88,16 @@
            packing  [x]
            [x & xs] xs]
       (if (= nil x)
-        (concat packed [packing])
-        (if (= (first packing) x)
+        (concat packed
+                [packing])
+        (if (= (first packing)
+               x)
           (recur packed
-                 (conj packing x)
+                 (conj packing
+                       x)
                  xs)
-          (recur (concat packed [packing])
+          (recur (concat packed
+                         [packing])
                  [x]
                  xs))))))
 
@@ -100,16 +105,18 @@
 (defn rle-encode [xs]
   (->> xs
        pack
-       (map (fn [xs] [(len xs) (first xs)] ))))
+       (map (fn [xs]
+              [(len xs)
+               (first xs)]))))
 
 ;P11
 (defn rle-encode-modified [xs]
   (->> xs
        pack
        (map (fn [ys]
-              (case (len ys)
-                1         (first ys)
-                          [(len ys) (first ys)])))))
+              (if (= 1 (len ys))
+                (first ys)
+                [(len ys) (first ys)])))))
 
 ;P12
 (defn rle-decode [xs]
@@ -167,17 +174,58 @@
          index 1
          [x & xs] xs]
     (cond (nil? x)      dropped
-          (= 0 (mod index n)) (recur dropped (inc index) xs)
-          :else         (recur (conj dropped x) (inc index) xs))))
+          (= 0
+             (mod index
+                  n))   (recur dropped
+                               (inc index)
+                               xs)
+          :else         (recur (conj dropped x)
+                               (inc index)
+                               xs))))
 
 
 ;P17
 (defn my-split [n xs]
-  (loop [heads []
-         i n
+  (loop [heads    []
+         i        n
          [x & xs] xs]
     (cond (or (nil? x)
-              (<= i 0)) [heads (concat [x] xs)]
+              (<= i 0)) [heads (concat [x]
+                                       xs)]
           :else         (recur (conj heads x)
                                (dec i)
                                xs))))
+
+;P18
+(defn my-slice [i k xs]
+  (let [drop-first (fn [n [x & xs]]
+                     (cond (<= n 1) xs
+                           (nil? x) xs
+                           :else    (recur (dec n)
+                                           xs)))
+        take-first (fn [n xs]
+                     (loop [including []
+                            n         n
+                            [x & xs]  xs]
+                       (cond (<= n 0) including
+                             (nil? x) including
+                             :else    (recur (conj including x)
+                                             (dec n)
+                                             xs))))]
+    (->> xs
+         (drop-first i)
+         (take-first (- k i)))))
+
+;P19
+(defn rotate [n xs]
+  (->> xs
+       cycle
+       (drop (mod n (count xs)))
+       (take (count xs))))
+
+;P20
+(defn remove-at [n xs]
+  (let [[hs ts] (split-at n xs)]
+    [(concat hs
+             (rest ts))
+     (first ts)]))
