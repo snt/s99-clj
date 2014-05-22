@@ -6,21 +6,24 @@
 ; Clojure does not have TCO, so use `recur` instead.
 ; If you do not use `loop`, recursion point is `fn`.
 
-(defn my-last [xs]
-  (let [h (first xs)
-        ts (rest xs)]
-    (if (= '() ts)
-      h
-      (recur ts))))
+; we cannot write "pattern matching" like this (it does not compile because two arg-body pairs have same arity.):
+;(defn my-last
+;  ([x] x)
+;  ([[x & xs]] (recur xs)))
+(defn my-last [[x & xs]]
+  (if (nil? xs)
+    x
+    (recur xs)))
+
 
 ; P02
-(defn my-last-but-one [xs]
-  (let [h1 (first xs)
-        h2 (first (rest xs))
-        ts (rest (rest xs))]
-    (if (= '() ts)
-      (if-not (nil? h2) h1 nil)
-      (recur (rest xs)))))
+(defn my-last-but-one [[h1 & ts]]
+  (let [[h2 & xs] ts]
+    (if (nil? xs)
+      (if (nil? h2)
+        nil
+        h1)
+      (recur ts))))
 
 ;P03
 (defn my-nth [n xs]
@@ -35,14 +38,17 @@
          xs xs]
     (if (= '() xs)
       count
-      (recur (inc count) (rest xs)))))
-; map and reduce way
+      (recur (inc count)
+             (rest xs)))))
+; map and reduce way (pmap is parallel map)
 (defn len2 [xs]
   (->> xs
-       (map (fn [_] 1))
+       (pmap (fn [_] 1))
        (reduce +)))
 
 ;P05
+; 2nd arg should be empty list instead of empty vector
+;  because conj adds elment to easiest point, head for lists and tail for vectors.
 (defn my-reverse [xs]
       (reduce conj () xs))
 
@@ -63,7 +69,7 @@
 
 ;P08
 (defn my-compress [[x & xs]]
-  (loop [prev x
+  (loop [prev     x
          [y & ys] xs
          outs     [x]]
     (if (= y nil)
