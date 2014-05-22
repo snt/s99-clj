@@ -95,3 +95,15 @@
   (testing "P18"
     (is (my-slice 3 7 ['a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k])
         ['d 'e 'f 'g])))
+
+(deftest p19
+  (testing "P19"
+    (is (rotate 3 '[a b c d e f g h i j k])
+        '[d e f g h i j k a b c])
+    (is (rotate -2 '[a b c d e f g h i j k])
+        '[j k a b c d e f g h i])))
+
+(deftest p20
+  (testing "P20"
+    (is (remove-at 1 '[a b c d])
+        '[[a c d] b])))
