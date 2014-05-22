@@ -201,11 +201,11 @@
                      (loop [including []
                             n         n
                             [x & xs]  xs]
-                       (cond (<= n 0) including
-                             (nil? x) including
-                             :else    (recur (conj including x)
-                                             (dec n)
-                                             xs))))]
+                       (cond (or (<= n 0)
+                                 (nil? x)) including
+                             :else         (recur (conj including x)
+                                                  (dec n)
+                                                  xs))))]
     (->> xs
          (drop-first i)
          (take-first (- k i)))))
