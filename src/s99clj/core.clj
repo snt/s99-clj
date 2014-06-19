@@ -229,3 +229,8 @@
     [(concat hs
              (rest ts))
      (first ts)]))
+
+;P21
+(defn insert-at [x n xs]
+  (let [[hs ts] (split-at n xs)]
+  [(concat hs [x] ts)]))

@@ -107,3 +107,8 @@
   (testing "P20"
     (is (remove-at 1 '[a b c d])
         '[[a c d] b])))
+
+(deftest p21
+  (testing "P21"
+    (is (insert-at :new 1 [:a :b :c :d])
+        [:a :new :b :c :d])))
